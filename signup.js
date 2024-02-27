@@ -24,7 +24,7 @@ function createNewVisitor(event) {
     //creating the user
     name: nameInput.value,
     coins: 50,
-    Image: "images/Avatars2.png",
+    Image: "./images/Avatars2.jpeg",
   };
 
   visitors.push(visitor);

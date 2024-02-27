@@ -3,106 +3,102 @@ let visitors = [
   {
     name: "John Smith",
     coins: 50,
-    image: {
-      url: "/images/Avatars1.jpeg",
-      title: "Image 1",
-      description: "Avatar",
-    },
+    image: "./images/Avatars1.jpeg",
   },
   {
     name: "Emily Johnson",
     coins: 50,
-    Image: "images/Avatars2.png",
+    image: "./images/Avatars2.jpeg",
   },
   {
     name: "Michael Williams",
     coins: 50,
-    Image: "images/Avatars3.png",
+    image: "./images/Avatars3.jpeg",
   },
   {
     name: "Jessica Brown",
     coins: 50,
-    Image: "images/Avatars4.png",
+    image: "./images/Avatars4.jpeg",
   },
   {
     name: "Christopher Jones",
     coins: 50,
-    Image: "images/Avatars5.png",
+    image: "./images/Avatars5.jpeg",
   },
   {
     name: "Ashley Davis",
     coins: 50,
-    Image: "images/Avatars6.png",
+    image: "./images/Avatars6.jpeg",
   },
   {
     name: "Matthew Miller",
     coins: 50,
-    Image: "images/Avatars7.png",
+    image: "./images/Avatars7.jpeg",
   },
   {
     name: "Amanda Wilson",
     coins: 50,
-    Image: "images/Avatars8.png",
+    image: "./images/Avatars8.jpeg",
   },
   {
     name: "David Moore",
     coins: 50,
-    Image: "images/Avatars1.png",
+    image: "./images/Avatars9.jpeg",
   },
   {
     name: "Sarah Taylor",
     coins: 50,
-    Image: "images/Avatars2.png",
+    image: "./images/Avatars10.jpeg",
   },
   {
     name: "James Anderson",
     coins: 50,
-    Image: "images/Avatars3.png",
+    image: "./images/Avatars1.jpeg",
   },
   {
     name: "Jennifer Thomas",
     coins: 50,
-    Image: "images/Avatars4.png",
+    image: "./images/Avatars2.jpeg",
   },
   {
     name: "Robert Jackson",
     coins: 50,
-    Image: "images/Avatars5.png",
+    image: "./images/Avatars3.jpeg",
   },
   {
     name: "Elizabeth White",
     coins: 50,
-    Image: "images/Avatars6.png",
+    image: "./images/Avatars4.jpeg",
   },
   {
     name: "Daniel Harris",
     coins: 50,
-    Image: "images/Avatars7.png",
+    image: "./images/Avatars5.jpeg",
   },
   {
     name: "Melissa Martin",
     coins: 50,
-    Image: "images/Avatars8.png",
+    image: "./images/Avatars6.jpeg",
   },
   {
     name: "William Thompson",
     coins: 50,
-    Image: "./images/Avatars1.jpeg",
+    image: "./images/Avatars7.jpeg",
   },
   {
     name: "Linda Garcia",
     coins: 50,
-    Image: "./images/Avatars2.png",
+    image: "./images/Avatars8.jpeg",
   },
   {
     name: "Joseph Martinez",
     coins: 50,
-    Image: "./images/Avatars3.png",
+    image: "./images/Avatars9.jpeg",
   },
   {
     name: "Karen Robinson",
     coins: 50,
-    Image: "./images/Avatars4.png",
+    image: "./images/Avatars10.jpeg",
   },
 ];
 
@@ -200,10 +196,6 @@ function generateDataset() {
 generateDataset();
 
 //********************** */
-
-let currentVisitor;
-localStorage.setItem("currentVisitor", JSON.stringify(currentVisitor));
-const storedObject = JSON.parse(localStorage.getItem("currentVisitor"));
 
 function logout() {
   //ממשו את הלוגיקה שמתנתקת מאורח מחובר

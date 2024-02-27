@@ -3,23 +3,18 @@ function loginAsVisitor(visitorName) {
   // תממשו את הלוגיקה של בחירת אורח שנכנס לגן החיות
   // שמרו את האורח שבחרתם, בלוקל סטורג' כך שבכל העמודים נדע מי האורח הנוכחי
   currentVisitor = visitorName;
-
-  if (localStorage.getItem("currentVisitor")) {
-    currentVisitor = JSON.parse(localStorage.getItem("currentVisitor"));
-  } else {
-    localStorage.setItem("currentVisitor", JSON.stringify(currentVisitor));
-  }
+  localStorage.setItem("currentVisitor", JSON.stringify(currentVisitor));
 
   window.location.href = "./zoo.html";
 }
 
-let visitorForView = [...visitors];
+let visitorsForView = [...visitors];
 const dialog = document.querySelector("#visitor-dialog");
 
 const getVisitorHTMLCard = (visitor) => {
   const template = `
       <div class="card" style="min-height: 360px;" >
-        <img class="card-img-top" src="images/Avatars1.jpeg" alt="${visitor.name}"/>
+        <img class="card-img-top" src="${visitor.image}" alt="${visitor.name}"/>
         <div class="card-body">
           <p class="card-text">${visitor.name}</p>
           <p class="card-text">${visitor.coins}</p>
@@ -30,6 +25,7 @@ const getVisitorHTMLCard = (visitor) => {
   wrapper.className = "visitor-card";
   wrapper.innerHTML = template;
   wrapper.addEventListener("click", () => handleVisitorClick(visitor));
+  console.log("Hello");
   return wrapper;
 };
 
@@ -76,6 +72,7 @@ const clearSearchBox = () => {
 };
 
 const renderVisitors = () => {
+  // console.log("Hello");
   const visitorCards = visitorsForView.map(getVisitorHTMLCard);
   const visitorsPlaceholder = document.getElementById("placeholder");
   visitorsPlaceholder.innerHTML = "";

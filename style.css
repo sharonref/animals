@@ -1,13 +1,12 @@
 body {
   background-image: url("./images/bg.jpeg");
-  background-size: cover;
-  background-repeat: no-repeat;
+  background-size: 100%;
   padding: 20px 80px;
 }
 
 #placeholder {
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
   margin: 0 auto;
   gap: 15px;
   flex-wrap: wrap;

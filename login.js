@@ -78,6 +78,8 @@ const renderVisitors = () => {
   if (!visitorCards.length) {
     visitorsPlaceholder.appendChild(getEmptyCardsHTMLTemplate());
   }
+
+  //add if , to check if there user in localStorage
   visitorsPlaceholder.append(...visitorCards);
 };
 

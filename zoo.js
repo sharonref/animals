@@ -7,7 +7,7 @@ const getAnimalHTMLCard = (animal) => {
   const wrapper = document.createElement("div");
   wrapper.className = "animal-card";
   wrapper.innerHTML = `
-  <div class="card" style="min-height: 360px;>
+  <div class="card" style="min-height: 360px;">
   <h2>${animal.name}</h2>
   <p>Is predator: ${animal.isPredator}</p>
   <p>Weight: ${animal.weight}</p>
@@ -49,6 +49,7 @@ const clearSearchBox = () => {
   renderAvailableAnimals();
 };
 
+//add another div with color - change the name color to the color
 function renderAvailableAnimals() {
   // ממשו את הלוגיקה שמרנדרת את החיות לתוך הדיב עם האיידי animal-cards
   // וודאו שאתם מציגים אך ורק את החיות שעומדות בפילטורים הנוכחיים
@@ -61,6 +62,7 @@ function renderAvailableAnimals() {
   if (!animalsCards.length) {
     animalsPlaceholder.appendChild(getEmptyCardsHTMLTemplate());
   }
+  console.log(animalsCards);
   animalsPlaceholder.append(...animalsCards);
   console.log("finish render");
 }

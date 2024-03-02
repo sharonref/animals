@@ -1,18 +1,19 @@
 //localStorage.setItem("currentVisitor", JSON.stringify(currentVisitor));
 
 let animalsForView = [...animals];
+const dialog = document.querySelector("#visitor-dialog");
 
 const getAnimalHTMLCard = (animal) => {
   console.log("inHTMLtemplate");
   const wrapper = document.createElement("div");
-  wrapper.className = "animal-card";
+  wrapper.className = "visitor-card";
   wrapper.innerHTML = `
   <div class="card" style="min-height: 360px;">
   <h2>${animal.name}</h2>
   <p>Is predator: ${animal.isPredator}</p>
   <p>Weight: ${animal.weight}</p>
   <p>Height: ${animal.height}</p>
-  <p>Color: ${animal.color}</p>
+  <p style="color:${animal.color};">Color: ${animal.color}</p>
   <p>Habitat: ${animal.habitat}</p>
   </div>
   `;
@@ -56,7 +57,7 @@ function renderAvailableAnimals() {
   // במידה ואין פילטרים מסומנים, הציגו את כל החיות
   console.log("in render");
   const animalsCards = animalsForView.map(getAnimalHTMLCard);
-  const animalsPlaceholder = document.getElementById("animal-cards");
+  const animalsPlaceholder = document.getElementById("placeholder");
   animalsPlaceholder.innerHTML = "";
 
   if (!animalsCards.length) {
@@ -75,6 +76,33 @@ function visitAnimal(animalName) {
   window.location.href = "./animal.html";
 }
 
+// const predetorInput = document.querySelector("#predator");
+// predetorInput.addEventListener("change", () => {
+//   console.log(predetorInput.checked);
+// });
+
+function setFilter(filterKey, filterValue) {
+  console.log("in setFilter");
+  animalsForView = animalsForView.filter((animal) => {
+    if (filterKey === "isPredator") {
+      return animal[filterKey] === filterValue;
+    }
+    if (filterKey === "habitat") {
+      return animal[filterKey] === filterValue;
+    }
+    if (filterKey === "weight") {
+      return animal[filterKey] > filterValue;
+    }
+    if (filterKey === "height") {
+      return animal[filterKey] > filterValue;
+    }
+    if (filterKey === "color") {
+      return animal[filterKey] === filterValue;
+    }
+  });
+  renderAvailableAnimals();
+}
+
 // function setFilter(filterKey, filterValue) {
 //   /**
 //    * ממשו את הלוגיקה של השמת פילטר
@@ -87,6 +115,22 @@ function visitAnimal(animalName) {
 //    */
 //   // ודאו כי אתם שומרים את הפילטרים שהיוזר בחר בלוקל סטורג׳ וטוענים אותם בהתאם
 //   // רנדרו רק את החיות שעומדות בתנאים של הפילטרים
+
 // }
 
+const getSearchBox = () => {
+  const queryInput = document.createElement("input");
+  queryInput.id = "query-input";
+  queryInput.placeholder = "Search animals";
+  queryInput.className = "form-control my-4";
+  queryInput.oninput = (e) => {
+    animalsForView = animals.filter((animal) =>
+      animal.name.includes(e.target.value)
+    );
+    renderAvailableAnimals();
+  };
+  return queryInput;
+};
+
+document.body.insertAdjacentElement("afterbegin", getSearchBox());
 window.addEventListener("load", renderAvailableAnimals);

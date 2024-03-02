@@ -1,5 +1,5 @@
 html {
-  overflow-y: scroll;
+  overflow-y: auto;
 }
 
 body {
@@ -12,7 +12,7 @@ body {
   display: flex;
   justify-content: space-around;
   margin: 0 auto;
-  gap: 15px;
+  gap: 50px;
   flex-wrap: wrap;
   z-index: 100;
 }
@@ -21,8 +21,9 @@ body {
   max-width: 250px;
   overflow: hidden;
   background: white;
-  border-radius: 20px;
+  border-radius: 25px;
   animation: fade-in 0.4s ease-in forwards;
+  padding: 35px;
 }
 
 .visitor-card img {

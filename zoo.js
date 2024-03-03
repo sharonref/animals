@@ -83,29 +83,93 @@ const heightInput = document.querySelector("#height");
 const colorInputGrey = document.querySelector("#colorGrey");
 const colorInputBrown = document.querySelector("#colorBrown");
 
+//string names for comfort
+const weightFilterKey = "weight-filter";
+const heightFilterKey = "height-filter";
+const isPredatorFilterKey = "isPredator-filter";
+const habitatFilterKey = "habitat-filter";
+const colorGreyFilterKey = "colorGrey-filter";
+const colorBrownFilterKey = "colorBrown-filter";
+
+if (localStorage.getItem(weightFilterKey)) {
+  weightInput.value = localStorage.getItem(weightFilterKey);
+}
+
 weightInput.addEventListener("input", () => {
+  setFilterOnLocalStorage(weightFilterKey, weightInput.value);
   console.log("weight " + weightInput.value);
 });
 
+if (localStorage.getItem(heightFilterKey)) {
+  heightInput.value = localStorage.getItem(heightFilterKey);
+}
+
 heightInput.addEventListener("input", () => {
-  console.log("height " + heightInput.value);
+  setFilterOnLocalStorage(heightFilterKey, heightInput.value);
+  console.log(localStorage.getItem("height"));
 });
+
+if(localStorage.getItem(isPredatorFilterKey)){
+  isPredatorInput.forEach((input) => {
+    if (input.value === localStorage.getItem(isPredatorFilterKey)) {
+      input.checked = true;
+    } 
+  });
+
 isPredatorInput.forEach((input) => {
   input.addEventListener("change", () => {
-    console.log(input.value, input.checked);
+    setFilterOnLocalStorage(isPredatorFilterKey, input.value);
+    console.log(localStorage.getItem("isPredator"));
   });
 });
+
+if (localStorage.getItem(habitatFilterKey)) {
+  habitatInput.forEach((input) => {
+    if (input.value === localStorage.getItem(habitatFilterKey)) {
+      input.checked = true;
+    }
+  });
+}
+
 habitatInput.forEach((input) => {
   input.addEventListener("change", () => {
-    console.log(input.value, input.checked);
+    setFilterOnLocalStorage(habitatFilterKey, input.value);
+    console.log(localStorage.getItem("habitat"));
   });
 });
+
+if (localStorage.getItem(colorGreyFilterKey)) {
+  const currentValue = localStorage.getItem(colorGreyFilterKey);
+  if (currentValue === "false") {
+    colorInputGrey.checked = false;
+  } else {
+    colorInputGrey.checked = true;
+  }
+}
+
 colorInputGrey.addEventListener("change", () => {
-  console.log("Grey " + colorInputGrey.checked);
+  setFilterOnLocalStorage(colorGreyFilterKey, colorInputGrey.checked);
+  console.log(localStorage.getItem("colorGrey"));
 });
+
+if (localStorage.getItem(colorBrownFilterKey)) {
+  const currentValue = localStorage.getItem(colorBrownFilterKey);
+  if (currentValue === "false") {
+    colorInputBrown.checked = false;
+  } else {
+    colorInputBrown.checked = true;
+  }
+}
+
 colorInputBrown.addEventListener("change", () => {
-  console.log("Brown " + colorInputBrown.checked);
+  setFilterOnLocalStorage(colorBrownFilterKey, colorInputBrown.checked);
+  console.log(localStorage.getItem("colorBrown"));
 });
+
+function setFilterOnLocalStorage(localStorageKey, valueToSet) {
+  localStorage.setItem(localStorageKey, valueToSet);
+  console.log(localStorage.getItem(localStorageKey));
+}
 
 function setFilter(filterKey, filterValue) {
   console.log("in setFilter");
@@ -130,6 +194,7 @@ function setFilter(filterKey, filterValue) {
   });
   renderAvailableAnimals();
 }
+
 
 // function setFilter(filterKey, filterValue) {
 //   /**

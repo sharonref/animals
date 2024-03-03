@@ -16,9 +16,37 @@
   </head>
   <body>
     <header id="header-wrapper"></header>
+    <!--starting point: load existing input values
+        on each change, save the current values-->
+
     <div>
-      <label for=""> Predetor </label>
-      <input type="checkbox" id="predetor" />
+      <label for="">Predetor</label>
+      <input type="radio" name="isPredetor" value="true" />
+      <label for="">Not Predetor</label>
+      <input type="radio" name="isPredetor" value="false" />
+    </div>
+    <div>
+      <label for="">Land</label>
+      <input type="radio" name="habitat" value="Land" />
+      <label for="">Sea</label>
+      <input type="radio" name="habitat" value="Sea" />
+    </div>
+    <div>
+      <label for="">Weight</label>
+      <input type="number" id="weight" placeholder="Weight" />
+    </div>
+    <div>
+      <label for="">Height</label>
+      <input type="number" id="height" placeholder="Height" />
+    </div>
+    <div>
+      <label for="">Color</label>
+      <!-- <input type="text" />-->
+      <select name="color">
+        <option name="color" value="None">All</option>
+        <option name="color" value="Grey">Grey</option>
+        <option name="color" value="Brown">Brown</option>
+      </select>
     </div>
     <div id="placeholder"></div>
     <!--<div id="visitor-card"></div>-->

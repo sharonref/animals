@@ -76,13 +76,37 @@ function visitAnimal(animalName) {
   window.location.href = "./animal.html";
 }
 
-// const predetorInput = document.querySelector("#predator");
-// predetorInput.addEventListener("change", () => {
-//   console.log(predetorInput.checked);
-// });
+const isPredatorInput = document.querySelectorAll("[name=isPredator]");
+const habitatInput = document.querySelectorAll("[name=habitat]");
+const weightInput = document.querySelector("#weight");
+const heightInput = document.querySelector("#height");
+// const colorInput = document.querySelectorAll("#color");
+
+weightInput.addEventListener("input", () => {
+  console.log(weightInput.value);
+});
+
+heightInput.addEventListener("input", () => {
+  console.log(heightInput.value);
+});
+
+//for subscribe input:
+// subscribeInput.addEventListener("change", () => {
+//   console.log(subscribeInput.checked);
+// }); 
+
+isPredatorInput.forEach((input) => { 
+  input.addEventListener("change", () => {console.log(input.value, input.checked);
+  });
+
+habitatInput.forEach((input) => { 
+  input.addEventListener("change", () => {console.log(input.value, input.checked);
+  });
 
 function setFilter(filterKey, filterValue) {
   console.log("in setFilter");
+  // parseInt('weight');
+
   animalsForView = animalsForView.filter((animal) => {
     if (filterKey === "isPredator") {
       return animal[filterKey] === filterValue;

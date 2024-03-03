@@ -45,6 +45,8 @@ const getEmptyCardsHTMLTemplate = () => {
 const clearSearchBox = () => {
   const input = document.getElementById("query-input");
   input.value = "";
+  weightInput.value = "";
+  heightInput.value = "";
   //למחוק את כל שאר הפילטרים בנוסף לחיפוש
   animalsForView = [...animals];
   renderAvailableAnimals();
@@ -97,7 +99,8 @@ if (localStorage.getItem(weightFilterKey)) {
 
 weightInput.addEventListener("input", () => {
   setFilterOnLocalStorage(weightFilterKey, weightInput.value);
-  console.log("weight " + weightInput.value);
+  //console.log("weight " + weightInput.value);
+  setFilter("weight", parseFloat(weightInput.value));
 });
 
 if (localStorage.getItem(heightFilterKey)) {
@@ -106,20 +109,23 @@ if (localStorage.getItem(heightFilterKey)) {
 
 heightInput.addEventListener("input", () => {
   setFilterOnLocalStorage(heightFilterKey, heightInput.value);
-  console.log(localStorage.getItem("height"));
+  //console.log(localStorage.getItem("height"))
+  setFilter("height", parseFloat(heightInput.value));
 });
 
-if(localStorage.getItem(isPredatorFilterKey)){
+if (localStorage.getItem(isPredatorFilterKey)) {
   isPredatorInput.forEach((input) => {
     if (input.value === localStorage.getItem(isPredatorFilterKey)) {
       input.checked = true;
-    } 
+    }
   });
+}
 
 isPredatorInput.forEach((input) => {
   input.addEventListener("change", () => {
     setFilterOnLocalStorage(isPredatorFilterKey, input.value);
-    console.log(localStorage.getItem("isPredator"));
+    //console.log(localStorage.getItem("isPredator"));
+    setFilter("isPredator", input.value);
   });
 });
 
@@ -134,7 +140,8 @@ if (localStorage.getItem(habitatFilterKey)) {
 habitatInput.forEach((input) => {
   input.addEventListener("change", () => {
     setFilterOnLocalStorage(habitatFilterKey, input.value);
-    console.log(localStorage.getItem("habitat"));
+    //console.log(localStorage.getItem("habitat"));
+    setFilter("habitat", input.value);
   });
 });
 
@@ -149,7 +156,8 @@ if (localStorage.getItem(colorGreyFilterKey)) {
 
 colorInputGrey.addEventListener("change", () => {
   setFilterOnLocalStorage(colorGreyFilterKey, colorInputGrey.checked);
-  console.log(localStorage.getItem("colorGrey"));
+  //console.log(localStorage.getItem("colorGrey"));
+  setFilter("color", colorInputGrey.checked ? "grey" : "");
 });
 
 if (localStorage.getItem(colorBrownFilterKey)) {
@@ -163,12 +171,13 @@ if (localStorage.getItem(colorBrownFilterKey)) {
 
 colorInputBrown.addEventListener("change", () => {
   setFilterOnLocalStorage(colorBrownFilterKey, colorInputBrown.checked);
-  console.log(localStorage.getItem("colorBrown"));
+  //console.log(localStorage.getItem("colorBrown"));
+  setFilter("color", colorInputBrown.checked ? "brown" : "");
 });
 
 function setFilterOnLocalStorage(localStorageKey, valueToSet) {
   localStorage.setItem(localStorageKey, valueToSet);
-  console.log(localStorage.getItem(localStorageKey));
+  //console.log(localStorage.getItem(localStorageKey));
 }
 
 function setFilter(filterKey, filterValue) {
@@ -193,8 +202,9 @@ function setFilter(filterKey, filterValue) {
     }
   });
   renderAvailableAnimals();
-}
 
+  return;
+}
 
 // function setFilter(filterKey, filterValue) {
 //   /**
@@ -222,6 +232,7 @@ const getSearchBox = () => {
     );
     renderAvailableAnimals();
   };
+
   return queryInput;
 };
 

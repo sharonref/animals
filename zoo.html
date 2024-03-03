@@ -20,12 +20,14 @@
         on each change, save the current values-->
 
     <div>
-      <label for="">Predetor</label>
-      <input type="radio" name="isPredetor" value="true" />
-      <label for="">Not Predetor</label>
-      <input type="radio" name="isPredetor" value="false" />
+      <label>Is Predetor? </label>
+      <label for="">Predator</label>
+      <input type="radio" name="isPredator" value="Predator" />
+      <label for="">Not Predator</label>
+      <input type="radio" name="isPredator" value="Not Predator" />
     </div>
     <div>
+      <label>Habitat: </label>
       <label for="">Land</label>
       <input type="radio" name="habitat" value="Land" />
       <label for="">Sea</label>
@@ -40,13 +42,12 @@
       <input type="number" id="height" placeholder="Height" />
     </div>
     <div>
-      <label for="">Color</label>
+      <label for="">Color: </label>
       <!-- <input type="text" />-->
-      <select name="color">
-        <option name="color" value="None">All</option>
-        <option name="color" value="Grey">Grey</option>
-        <option name="color" value="Brown">Brown</option>
-      </select>
+      <label for="">Grey</label>
+      <input type="checkbox" id="colorGrey" checked />
+      <label for="">Brown</label>
+      <input type="checkbox" id="colorBrown" value="Brown" checked />
     </div>
     <div id="placeholder"></div>
     <!--<div id="visitor-card"></div>-->

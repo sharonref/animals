@@ -76,25 +76,20 @@ function visitAnimal(animalName) {
   window.location.href = "./animal.html";
 }
 
-const isPredatorInput = document.querySelectorAll("[name=isPredator]");
-const habitatInput = document.querySelectorAll("[name=habitat]");
+const isPredatorInput = document.querySelectorAll("[name='isPredator']");
+const habitatInput = document.querySelectorAll("[name='habitat']");
 const weightInput = document.querySelector("#weight");
 const heightInput = document.querySelector("#height");
-// const colorInput = document.querySelectorAll("#color");
+const colorInputGrey = document.querySelector("#colorGrey");
+const colorInputBrown = document.querySelector("#colorBrown");
 
 weightInput.addEventListener("input", () => {
-  console.log(weightInput.value);
+  console.log("weight " + weightInput.value);
 });
 
 heightInput.addEventListener("input", () => {
-  console.log(heightInput.value);
+  console.log("height " + heightInput.value);
 });
-
-//for subscribe input:
-// subscribeInput.addEventListener("change", () => {
-//   console.log(subscribeInput.checked);
-// });
-
 isPredatorInput.forEach((input) => {
   input.addEventListener("change", () => {
     console.log(input.value, input.checked);
@@ -104,6 +99,12 @@ habitatInput.forEach((input) => {
   input.addEventListener("change", () => {
     console.log(input.value, input.checked);
   });
+});
+colorInputGrey.addEventListener("change", () => {
+  console.log("Grey " + colorInputGrey.checked);
+});
+colorInputBrown.addEventListener("change", () => {
+  console.log("Brown " + colorInputBrown.checked);
 });
 
 function setFilter(filterKey, filterValue) {

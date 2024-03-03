@@ -110,6 +110,7 @@ let animals = [
     height: 120,
     color: "brown",
     habitat: "land",
+    image: "./images/Avatars1.jpeg",
   },
   {
     name: "Elephant",
@@ -126,6 +127,7 @@ let animals = [
     height: 120,
     color: "brown",
     habitat: "land",
+    image: "./images/Avatars1.jpeg",
   },
   {
     name: "Tiger",

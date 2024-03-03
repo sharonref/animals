@@ -93,15 +93,18 @@ heightInput.addEventListener("input", () => {
 //for subscribe input:
 // subscribeInput.addEventListener("change", () => {
 //   console.log(subscribeInput.checked);
-// }); 
+// });
 
-isPredatorInput.forEach((input) => { 
-  input.addEventListener("change", () => {console.log(input.value, input.checked);
+isPredatorInput.forEach((input) => {
+  input.addEventListener("change", () => {
+    console.log(input.value, input.checked);
   });
-
-habitatInput.forEach((input) => { 
-  input.addEventListener("change", () => {console.log(input.value, input.checked);
+});
+habitatInput.forEach((input) => {
+  input.addEventListener("change", () => {
+    console.log(input.value, input.checked);
   });
+});
 
 function setFilter(filterKey, filterValue) {
   console.log("in setFilter");

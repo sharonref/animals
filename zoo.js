@@ -18,7 +18,7 @@ const getAnimalHTMLCard = (animal) => {
   </div>
   `;
 
-  wrapper.addEventListener("click", () => visitAnimal(animal.name));
+  wrapper.addEventListener("click", () => visitAnimal(animal));
   console.log("finishedHTMLtemplate");
   return wrapper;
 };
@@ -99,8 +99,8 @@ if (localStorage.getItem(weightFilterKey)) {
 
 weightInput.addEventListener("input", () => {
   setFilterOnLocalStorage(weightFilterKey, weightInput.value);
-  //console.log("weight " + weightInput.value);
-  setFilter("weight", parseFloat(weightInput.value));
+  console.log("weight " + weightInput.value);
+  setFilter("weight", weightInput.value);
 });
 
 if (localStorage.getItem(heightFilterKey)) {
@@ -109,8 +109,8 @@ if (localStorage.getItem(heightFilterKey)) {
 
 heightInput.addEventListener("input", () => {
   setFilterOnLocalStorage(heightFilterKey, heightInput.value);
-  //console.log(localStorage.getItem("height"))
-  setFilter("height", parseFloat(heightInput.value));
+  console.log(localStorage.getItem("height"));
+  setFilter("height", heightInput.value);
 });
 
 if (localStorage.getItem(isPredatorFilterKey)) {
@@ -124,7 +124,7 @@ if (localStorage.getItem(isPredatorFilterKey)) {
 isPredatorInput.forEach((input) => {
   input.addEventListener("change", () => {
     setFilterOnLocalStorage(isPredatorFilterKey, input.value);
-    //console.log(localStorage.getItem("isPredator"));
+    console.log(localStorage.getItem("isPredator"));
     setFilter("isPredator", input.value);
   });
 });
@@ -140,7 +140,7 @@ if (localStorage.getItem(habitatFilterKey)) {
 habitatInput.forEach((input) => {
   input.addEventListener("change", () => {
     setFilterOnLocalStorage(habitatFilterKey, input.value);
-    //console.log(localStorage.getItem("habitat"));
+    console.log(localStorage.getItem("habitat"));
     setFilter("habitat", input.value);
   });
 });
@@ -156,8 +156,8 @@ if (localStorage.getItem(colorGreyFilterKey)) {
 
 colorInputGrey.addEventListener("change", () => {
   setFilterOnLocalStorage(colorGreyFilterKey, colorInputGrey.checked);
-  //console.log(localStorage.getItem("colorGrey"));
-  setFilter("color", colorInputGrey.checked ? "grey" : "");
+  console.log(localStorage.getItem("colorGrey"));
+  setFilter("color", colorInputGrey.value.toLowerCase());
 });
 
 if (localStorage.getItem(colorBrownFilterKey)) {
@@ -171,8 +171,8 @@ if (localStorage.getItem(colorBrownFilterKey)) {
 
 colorInputBrown.addEventListener("change", () => {
   setFilterOnLocalStorage(colorBrownFilterKey, colorInputBrown.checked);
-  //console.log(localStorage.getItem("colorBrown"));
-  setFilter("color", colorInputBrown.checked ? "brown" : "");
+  console.log(localStorage.getItem("colorBrown"));
+  setFilter("color", colorInputBrown.value.toLowerCase());
 });
 
 function setFilterOnLocalStorage(localStorageKey, valueToSet) {
@@ -183,24 +183,29 @@ function setFilterOnLocalStorage(localStorageKey, valueToSet) {
 function setFilter(filterKey, filterValue) {
   console.log("in setFilter");
   // parseInt('weight');
-
+  console.log(animalsForView);
+  animalsForView = [...animals];
   animalsForView = animalsForView.filter((animal) => {
     if (filterKey === "isPredator") {
-      return animal[filterKey] === filterValue;
+      console.log(animal, filterKey, filterValue);
+      return String(animal[filterKey]) === filterValue;
     }
     if (filterKey === "habitat") {
-      return animal[filterKey] === filterValue;
+      console.log(animal, filterKey, filterValue);
+      return String(animal[filterKey]) === filterValue.toLowerCase();
     }
     if (filterKey === "weight") {
-      return animal[filterKey] > filterValue;
+      return animal[filterKey] > parseInt(filterValue);
     }
     if (filterKey === "height") {
-      return animal[filterKey] > filterValue;
+      return animal[filterKey] > parseInt(filterValue);
     }
     if (filterKey === "color") {
-      return animal[filterKey] === filterValue;
+      console.log(animal, filterKey, filterValue);
+      return String(animal[filterKey]) === filterValue;
     }
   });
+  console.log(animalsForView);
   renderAvailableAnimals();
 
   return;

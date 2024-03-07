@@ -230,7 +230,7 @@ const getSearchBox = () => {
   const queryInput = document.createElement("input");
   queryInput.id = "query-input";
   queryInput.placeholder = "Search animals";
-  queryInput.className = "form-control my-4";
+  //queryInput.className = "form-control my-4";
   queryInput.oninput = (e) => {
     animalsForView = animals.filter((animal) =>
       animal.name.includes(e.target.value)
@@ -241,5 +241,6 @@ const getSearchBox = () => {
   return queryInput;
 };
 
-document.body.insertAdjacentElement("afterbegin", getSearchBox());
+const filters = document.getElementById("filters");
+filters.insertAdjacentElement("afterbegin", getSearchBox());
 window.addEventListener("load", renderAvailableAnimals);

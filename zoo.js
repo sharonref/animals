@@ -9,6 +9,7 @@ const getAnimalHTMLCard = (animal) => {
   wrapper.className = "visitor-card";
   wrapper.innerHTML = `
   <div class="card" style="min-height: 360px;">
+  <img src="${animal.image}" alt=${animal.name}/>
   <h2>${animal.name}</h2>
   <p>Is predator: ${animal.isPredator}</p>
   <p>Weight: ${animal.weight}</p>
@@ -47,6 +48,14 @@ const clearSearchBox = () => {
   input.value = "";
   weightInput.value = "";
   heightInput.value = "";
+  // localStorage.setItem("weight-filter", "");
+  // localStorage.setItem("height-filter", "");
+  colorInputGrey.checked = true;
+  colorInputBrown.checked = true;
+  localStorage.setItem("colorBrown-filter", "true");
+  localStorage.setItem("colorGrey-filter", "true");
+  isPredatorInput.values = "";
+  habitatInput = "";
   //למחוק את כל שאר הפילטרים בנוסף לחיפוש
   animalsForView = [...animals];
   renderAvailableAnimals();
@@ -180,6 +189,20 @@ function setFilterOnLocalStorage(localStorageKey, valueToSet) {
   //console.log(localStorage.getItem(localStorageKey));
 }
 
+const getSearchBox = () => {
+  const queryInput = document.createElement("input");
+  queryInput.id = "query-input";
+  queryInput.placeholder = "Search animals";
+  queryInput.className = "form-control my-4";
+  queryInput.oninput = (e) => {
+    animalsForView = animals.filter((animal) =>
+      animal.name.includes(e.target.value)
+    );
+    renderAvailableAnimals();
+  };
+  return queryInput;
+};
+
 function setFilter(filterKey, filterValue) {
   console.log("in setFilter");
   // parseInt('weight');
@@ -211,35 +234,9 @@ function setFilter(filterKey, filterValue) {
   return;
 }
 
-// function setFilter(filterKey, filterValue) {
-//   /**
-//    * ממשו את הלוגיקה של השמת פילטר
-//    * הפילטרים הקיימים הם
-//    * isPredator: true | false
-//    * habitat: "land" | "sea"
-//    * weight: value > user selected weight
-//    * height: value > user selected height
-//    * color: dropdown of all available colors
-//    */
-//   // ודאו כי אתם שומרים את הפילטרים שהיוזר בחר בלוקל סטורג׳ וטוענים אותם בהתאם
-//   // רנדרו רק את החיות שעומדות בתנאים של הפילטרים
-
-// }
-
-const getSearchBox = () => {
-  const queryInput = document.createElement("input");
-  queryInput.id = "query-input";
-  queryInput.placeholder = "Search animals";
-  //queryInput.className = "form-control my-4";
-  queryInput.oninput = (e) => {
-    animalsForView = animals.filter((animal) =>
-      animal.name.includes(e.target.value)
-    );
-    renderAvailableAnimals();
-  };
-
-  return queryInput;
-};
+const clearBTN = document.addEventListener("click", () => {
+  clearSearchBox();
+});
 
 const filters = document.getElementById("filters");
 filters.insertAdjacentElement("afterbegin", getSearchBox());

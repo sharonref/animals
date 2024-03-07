@@ -30,7 +30,37 @@ function renderAnimal() {
   animalPlaceHolder.append(animalHTML);
 }
 
+let animalsForView = [...animals];
+const theHabitat = selectedAnimal.habitat;
+animalsForView = animalsForView.filter((animal) => {
+  animal.habitat === theHabitat;
+  console.log(animal.habitat, theHabitat);
+});
+console.log(animalsForView);
+
+const getAnimalHTMLCard = (animal) => {
+  console.log("inHTMLtemplate");
+  const wrapper = document.createElement("div");
+  wrapper.className = "visitor-card";
+  wrapper.innerHTML = `
+  <div class="card" style="min-height: 360px;">
+  <img src="${animal.image}" alt=${animal.name}/>
+  <h2>${animal.name}</h2>
+  <p>Is predator: ${animal.isPredator}</p>
+  <p>Weight: ${animal.weight}</p>
+  <p>Height: ${animal.height}</p>
+  <p style="color:${animal.color};">Color: ${animal.color}</p>
+  <p>Habitat: ${animal.habitat}</p>
+  </div>
+  `;
+};
+
 function renderRelatedAnimals() {
+  console.log("in render related");
+  const animalsToShow = animalsForView.map(getAnimalHTMLCard);
+  const whereToRender = document.getElementById("related-animals");
+  whereToRender.innerHTML = "";
+  whereToRender.append(...animalsToShow);
   // ממשו את הלוגיקה שמרנדרת כרטיסיות של החיות ששדה ההאביטט שלהם זהה לחיה שמוצגת
   // רנדרו אותן לתוך הדיב שמיועד להן עם האיידי related-animals
   // ממשו את אותה לוגיקה של כרטיסיית חיה כמו בכרטיסיות בעמוד zoo.html
@@ -43,10 +73,10 @@ function feedAnimal() {
   // ממשו את הלוגיקה של האכלת חיה
   // במידה ואין מספיק מטבעות, טפלו בהתאם להנחיות במטלה
   if (selectedVisitor.coins >= 2) {
-    //pop up
-    // window.alert(
-    //   `Thank you for feeding the ${selectedAnimal.name}! Give me the money!`
-    // );
+    // pop up
+    window.alert(
+      `Thank you for feeding the ${selectedAnimal.name}! Give me the money!`
+    );
     //fix selectedVisitor coins
     selectedVisitor.coins = selectedVisitor.coins - 2;
     //fix currentVisitor coins using selectedVisitor
@@ -119,3 +149,4 @@ function animalEscaped() {
 }
 
 window.addEventListener("load", renderAnimal);
+window.addEventListener("load", renderRelatedAnimals);

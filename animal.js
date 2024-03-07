@@ -1,5 +1,34 @@
 const stringifiedAnimal = localStorage.getItem("currentAnimal");
 let selectedAnimal = JSON.parse(stringifiedAnimal);
+let stringifiedVisitor = localStorage.getItem("currentVisitor");
+let selectedVisitor = JSON.parse(stringifiedVisitor);
+
+function navbarHTML(visitor) {
+  const wrapper = document.createElement("div");
+  wrapper.className = "navbar";
+  wrapper.innerHTML = `<p>Visitor: ${visitor.name}</p>
+  <p>Coins: ${visitor.coins}</p>
+  `;
+  return wrapper;
+}
+
+function addVisitorToNavbar() {
+  const dataToShow = navbarHTML(selectedVisitor);
+  const whereToAdd = document.getElementById("visitorData");
+  //console.log(dataToShow);
+  whereToAdd.innerHTML = "";
+  whereToAdd.appendChild(dataToShow);
+}
+
+const buttonReset = document.getElementById("reset");
+buttonReset.addEventListener("click", () => {
+  localStorage.clear();
+  const setfieldVisitors = JSON.stringify(visitors);
+  localStorage.setItem("visitors", setfieldVisitors);
+  const setfieldAnimals = JSON.stringify(animals);
+  localStorage.setItem("animals", setfieldAnimals);
+  window.location.href = "./signup.html";
+});
 
 function getAnimalHTML(animal) {
   const wrapper = document.createElement("div");
@@ -30,21 +59,33 @@ function renderAnimal() {
   animalPlaceHolder.append(animalHTML);
 }
 
-let animalsForView = [...animals];
+const animalsNewHabitat = JSON.parse(localStorage.getItem("animals"));
+//console.log(animalsNewHabitat);
+let animalsForView = [...animalsNewHabitat];
 const theHabitat = selectedAnimal.habitat;
+//console.log(animalsForView);
+
 animalsForView = animalsForView.filter((animal) => {
-  animal.habitat === theHabitat;
-  console.log(animal.habitat, theHabitat);
+  return animal.habitat === theHabitat && animal.name !== selectedAnimal.name;
 });
 console.log(animalsForView);
+
+function visitAnimal(animalName) {
+  // ממשו את הלוגיקה של מעבר לעמוד חיה עבור החיה הספציפית שנבחרה
+  // שמרו בלוקל סטורג' את החיה שנבחרה, כך שבעמוד החיה נוכל לשלוף אותה מהסטורג' ולהציגה בהתאם
+  let currentAnimal = animalName;
+  localStorage.setItem("currentAnimal", JSON.stringify(currentAnimal));
+  window.location.href = "./animal.html";
+}
 
 const getAnimalHTMLCard = (animal) => {
   console.log("inHTMLtemplate");
   const wrapper = document.createElement("div");
   wrapper.className = "visitor-card";
   wrapper.innerHTML = `
-  <div class="card" style="min-height: 360px;">
-  <img src="${animal.image}" alt=${animal.name}/>
+  <div class="card" style="min-height: 360px; border: 5px solid rgb(0, 128, 0); 
+  border-style: autset; border-radius: 25px;">
+  <img src="${animal.image}" alt="${animal.name}"/>
   <h2>${animal.name}</h2>
   <p>Is predator: ${animal.isPredator}</p>
   <p>Weight: ${animal.weight}</p>
@@ -53,11 +94,14 @@ const getAnimalHTMLCard = (animal) => {
   <p>Habitat: ${animal.habitat}</p>
   </div>
   `;
+  wrapper.addEventListener("click", () => visitAnimal(animal));
+  return wrapper;
 };
 
 function renderRelatedAnimals() {
   console.log("in render related");
   const animalsToShow = animalsForView.map(getAnimalHTMLCard);
+  console.log(animalsToShow);
   const whereToRender = document.getElementById("related-animals");
   whereToRender.innerHTML = "";
   whereToRender.append(...animalsToShow);
@@ -65,9 +109,6 @@ function renderRelatedAnimals() {
   // רנדרו אותן לתוך הדיב שמיועד להן עם האיידי related-animals
   // ממשו את אותה לוגיקה של כרטיסיית חיה כמו בכרטיסיות בעמוד zoo.html
 }
-
-let stringifiedVisitor = localStorage.getItem("currentVisitor");
-let selectedVisitor = JSON.parse(stringifiedVisitor);
 
 function feedAnimal() {
   // ממשו את הלוגיקה של האכלת חיה
@@ -150,3 +191,4 @@ function animalEscaped() {
 
 window.addEventListener("load", renderAnimal);
 window.addEventListener("load", renderRelatedAnimals);
+window.addEventListener("load", addVisitorToNavbar);

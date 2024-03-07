@@ -137,6 +137,7 @@ let animals = [
     height: 120,
     color: "brown",
     habitat: "land",
+    image: "./images/tiger.jpeg",
   },
   {
     name: "Monkey",
@@ -145,6 +146,7 @@ let animals = [
     height: 120,
     color: "brown",
     habitat: "land",
+    image: "./images/monkey.jpeg",
   },
   {
     name: "Kangaroo",
@@ -153,6 +155,7 @@ let animals = [
     height: 120,
     color: "brown",
     habitat: "land",
+    image: "./images/kangeroo.jpeg",
   },
   {
     name: "Penguin",
@@ -161,6 +164,7 @@ let animals = [
     height: 120,
     color: "brown",
     habitat: "sea",
+    image: "./images/penguin.jpeg",
   },
   {
     name: "Zebra",
@@ -169,6 +173,7 @@ let animals = [
     height: 120,
     color: "brown",
     habitat: "land",
+    image: "./images/zebra.jpeg",
   },
   {
     name: "Cheetah",
@@ -177,6 +182,7 @@ let animals = [
     height: 120,
     color: "brown",
     habitat: "land",
+    image: "./images/cheetah.jpeg",
   },
 ];
 

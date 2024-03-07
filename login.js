@@ -15,7 +15,8 @@ const getVisitorHTMLCard = (visitor) => {
   const wrapper = document.createElement("div");
   wrapper.className = "visitor-card";
   wrapper.innerHTML = `
-      <div class="card" style="min-height: 360px;" >
+  <div class="card" style="min-height: 360px; border: 5px solid rgb(0, 128, 0); 
+  border-style: autset; border-radius: 25px;">
       <div class="card-body">
       <img class="card-img-top" src="${visitor.image}" alt="${visitor.name}"/>
       <p class="card-text">${visitor.name}</p>

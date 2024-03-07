@@ -3,13 +3,44 @@
 let animalsForView = [...animals];
 const dialog = document.querySelector("#visitor-dialog");
 
+let stringifiedVisitor = localStorage.getItem("currentVisitor");
+let selectedVisitor = JSON.parse(stringifiedVisitor);
+
+function navbarHTML(visitor) {
+  const wrapper = document.createElement("div");
+  wrapper.className = "navbar";
+  wrapper.innerHTML = `<p>Visitor: ${visitor.name}</p>
+  <p>Coins: ${visitor.coins}</p>
+  `;
+  return wrapper;
+}
+
+function addVisitorToNavbar() {
+  const dataToShow = navbarHTML(selectedVisitor);
+  const whereToAdd = document.getElementById("visitorData");
+  //console.log(dataToShow);
+  whereToAdd.innerHTML = "";
+  whereToAdd.appendChild(dataToShow);
+}
+
+const buttonReset = document.getElementById("reset");
+buttonReset.addEventListener("click", () => {
+  localStorage.clear();
+  const setfieldVisitors = JSON.stringify(visitors);
+  localStorage.setItem("visitors", setfieldVisitors);
+  const setfieldAnimals = JSON.stringify(animals);
+  localStorage.setItem("animals", setfieldAnimals);
+  window.location.href = "./signup.html";
+});
+
 const getAnimalHTMLCard = (animal) => {
   console.log("inHTMLtemplate");
   const wrapper = document.createElement("div");
   wrapper.className = "visitor-card";
   wrapper.innerHTML = `
-  <div class="card" style="min-height: 360px;">
-  <img src="${animal.image}" alt=${animal.name}/>
+  <div class="card" style="min-height: 360px; border: 5px solid rgb(0, 128, 0); 
+  border-style: autset; border-radius: 25px;">
+  <img src="${animal.image}" alt="${animal.name}"/>
   <h2>${animal.name}</h2>
   <p>Is predator: ${animal.isPredator}</p>
   <p>Weight: ${animal.weight}</p>
@@ -43,6 +74,21 @@ const getEmptyCardsHTMLTemplate = () => {
   return templateWrapper;
 };
 
+const getSearchBox = () => {
+  const queryInput = document.createElement("input");
+  queryInput.id = "query-input";
+  queryInput.placeholder = "Search animals";
+  queryInput.className = "form-control my-4";
+  // צריך לטפל בזה - לא אמור לפלטר מאנימלס
+  queryInput.oninput = (e) => {
+    animalsForView = animals.filter((animal) =>
+      animal.name.includes(e.target.value)
+    );
+    renderAvailableAnimals();
+  };
+  return queryInput;
+};
+
 const clearSearchBox = () => {
   const input = document.getElementById("query-input");
   input.value = "";
@@ -55,11 +101,17 @@ const clearSearchBox = () => {
   localStorage.setItem("colorBrown-filter", "true");
   localStorage.setItem("colorGrey-filter", "true");
   isPredatorInput.values = "";
-  habitatInput = "";
+  habitatInput.values = "";
   //למחוק את כל שאר הפילטרים בנוסף לחיפוש
   animalsForView = [...animals];
   renderAvailableAnimals();
 };
+
+let buttonClear = document.getElementById("reset");
+
+buttonClear = document.addEventListener("click", () => {
+  return clearSearchBox();
+});
 
 //add another div with color - change the name color to the color
 function renderAvailableAnimals() {
@@ -189,20 +241,6 @@ function setFilterOnLocalStorage(localStorageKey, valueToSet) {
   //console.log(localStorage.getItem(localStorageKey));
 }
 
-const getSearchBox = () => {
-  const queryInput = document.createElement("input");
-  queryInput.id = "query-input";
-  queryInput.placeholder = "Search animals";
-  queryInput.className = "form-control my-4";
-  queryInput.oninput = (e) => {
-    animalsForView = animals.filter((animal) =>
-      animal.name.includes(e.target.value)
-    );
-    renderAvailableAnimals();
-  };
-  return queryInput;
-};
-
 function setFilter(filterKey, filterValue) {
   console.log("in setFilter");
   // parseInt('weight');
@@ -234,10 +272,7 @@ function setFilter(filterKey, filterValue) {
   return;
 }
 
-const clearBTN = document.addEventListener("click", () => {
-  clearSearchBox();
-});
-
 const filters = document.getElementById("filters");
 filters.insertAdjacentElement("afterbegin", getSearchBox());
 window.addEventListener("load", renderAvailableAnimals);
+window.addEventListener("load", addVisitorToNavbar);

@@ -1,6 +1,7 @@
 //localStorage.setItem("currentVisitor", JSON.stringify(currentVisitor));
 
 let animalsForView = [...animals];
+console.log(animalsForView);
 const dialog = document.querySelector("#visitor-dialog");
 
 let stringifiedVisitor = localStorage.getItem("currentVisitor");

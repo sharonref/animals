@@ -25,6 +25,8 @@ function createNewVisitor(event) {
     name: nameInput.value,
     coins: 50,
     image: "./images/Avatars1.jpeg",
+    visited: [],
+    feeded: [],
   };
 
   visitors.push(visitor);

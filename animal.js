@@ -3,6 +3,7 @@ let selectedAnimal = JSON.parse(stringifiedAnimal);
 let stringifiedVisitor = localStorage.getItem("currentVisitor");
 let selectedVisitor = JSON.parse(stringifiedVisitor);
 
+console.log(visitors);
 function navbarHTML(visitor) {
   const wrapper = document.createElement("div");
   wrapper.className = "navbar";

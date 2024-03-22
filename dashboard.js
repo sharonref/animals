@@ -1,3 +1,7 @@
+let visitedAnimals = document.getElementById("visited-animals");
+let feededAnimals = document.getElementById("feeded-animals");
+let favoriteAnimal = document.getElementById("favorite-animal");
+
 function showVisitedAnimals() {
   //ממשו את הלוגיקה שמציגה את החיות שהאורח הנוכחי ביקר בהן
 }

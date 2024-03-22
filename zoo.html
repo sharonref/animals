@@ -25,6 +25,9 @@
         <nav class="nav">
           <ul class="nav_wrapper">
             <li class="nav_item">
+              <a href="./zoo.html">Zoo</a>
+            </li>
+            <li class="nav_item">
               <a href="./signup.html">Signup</a>
             </li>
             <li class="nav_item">
@@ -45,22 +48,22 @@
       <label for="">Not Predator</label>
       <input type="radio" name="isPredator" value="false" />
     </div>
-    <div>
+    <div id="filters">
       <label>Habitat: </label>
       <label for="">Land</label>
       <input type="radio" name="habitat" value="Land" />
       <label for="">Sea</label>
       <input type="radio" name="habitat" value="Sea" />
     </div>
-    <div>
+    <div id="filters">
       <label for="">Weight</label>
       <input type="number" id="weight" placeholder="Weight" />
     </div>
-    <div>
+    <div id="filters">
       <label for="">Height</label>
       <input type="number" id="height" placeholder="Height" />
     </div>
-    <div>
+    <div id="filters">
       <label for="">Color: </label>
       <!-- <input type="text" />-->
       <label for="">Grey</label>
@@ -68,8 +71,9 @@
       <label for="">Brown</label>
       <input type="checkbox" id="colorBrown" value="Brown" checked />
     </div>
-    <div id="placeholder"></div>
     <button id="clearFilters">Clear filters</button>
+    <div id="placeholder"></div>
+
     <!--<div id="visitor-card"></div>-->
     <dialog id="visitor-dialog"></dialog>
     <script src="./zoo.js"></script>

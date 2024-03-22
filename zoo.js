@@ -10,7 +10,7 @@ function navbarHTML(visitor) {
   const wrapper = document.createElement("div");
   wrapper.className = "navbar";
   wrapper.innerHTML = `<p>Visitor: ${visitor.name}</p>
-  <p>Coins: ${visitor.coins}</p>
+  <p>  Coins: ${visitor.coins}</p>
   `;
   return wrapper;
 }

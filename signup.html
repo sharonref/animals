@@ -9,11 +9,26 @@
     <script src="./main.js"></script>
   </head>
   <body>
-    <form id="create-visitor-form">
-      <label for="visitor-name">Name:</label>
-      <input type="text" id="visitor-name" name="visitorName" />
-      <input type="submit" />
-    </form>
+    <div id="signup">
+      <div id="welcome">
+        <h1>Welcome to ZooLand!</h1>
+        <p>
+          In our zoo you will able to feed all our animals so signup and enjoy!
+        </p>
+      </div>
+      <form id="create-visitor-form">
+        <label for="visitor-name">Name: </label>
+        <input type="text" id="visitor-name" name="visitorName" />
+        <input type="submit" />
+      </form>
+      <div id="toLogin">
+        <p>
+          Already have a user? <br />
+          go to login:
+        </p>
+        <button><a href="./login.html">Login</a></button>
+      </div>
+    </div>
     <!-- צרו טופס יצירת אורח חדש -->
     <!-- לאחר יצירה, הוסיפו אותו למערך האורחים ושמרו את מערך האורחים המעודכן בלוקל סטורג' -->
     <!-- עברו לעמוד התחברות כדי לבחור את האורח שאיתו תכנסו לגן החיות -->

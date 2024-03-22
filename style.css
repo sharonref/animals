@@ -1,5 +1,6 @@
 html {
   overflow-y: auto;
+  font-family: cursive;
 }
 
 #header-wrapper {
@@ -155,4 +156,44 @@ dialog {
     opacity: 1;
     transform: none;
   }
+}
+#welcome {
+  justify-content: space-between;
+  text-align: center;
+  width: 100%;
+  background-color: rgba(0, 128, 0, 0.6);
+  padding: 10px;
+  color: azure;
+}
+#toLogin {
+  justify-content: space-between;
+  text-align: center;
+  width: 100%;
+  background-color: rgba(0, 128, 0, 0.6);
+  padding: 10px;
+  color: azure;
+}
+#create-visitor-form {
+  display: flex;
+  justify-content: center;
+  color: rgba(0, 128, 0);
+  padding: 20px 0;
+}
+#signup {
+  height: 100vh;
+  align-content: center;
+}
+#visitorData {
+  margin-left: 20px;
+}
+#reset {
+  margin-left: 5px;
+}
+.site-header_wrapper {
+  align-items: first baseline;
+}
+#filters {
+  background-color: white;
+  text-align: center;
+  padding-bottom: 5px;
 }
